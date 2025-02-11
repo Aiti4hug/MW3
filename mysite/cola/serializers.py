@@ -8,7 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ('username', 'first_name', 'last_name',
-                  'age','email', 'phone_number', 'password')
+                      'age', 'phone_number', 'password')
         extra_kwargs = {'password': {'write_only': True}}
 
 
@@ -58,7 +58,7 @@ class StudentSerializer(serializers.ModelSerializer):
         model = Student
         fields = '__all__'
 
-class CategorySerializer(serializers.ModelSerializer):
+class CategoryLiatSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = '__all__'
@@ -77,18 +77,18 @@ class CourseDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ['course_name', 'category', 'author', 'level', 'price', 'created_ap', 'updated_ap']
+        fields = '__all__'
 
 
 class CourseCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
-        fields = ['course_name', 'description', 'category', 'author', 'level', 'price', 'type_course']
+        fields = '__all__'
 
 class CourseUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
-        fields = ['course_name', 'description', 'category', 'author', 'level', 'price', 'type_course']
+        fields = '__all__'
 
 class LessonSerializer(serializers.ModelSerializer):
     class Meta:

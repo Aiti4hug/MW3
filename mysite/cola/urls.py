@@ -7,7 +7,6 @@ router.register(r'profiles', ProfileViewSet)
 router.register(r'networks', NetworkViewSet)
 router.register(r'teachers', TeacherViewSet)
 router.register(r'students', StudentViewSet)
-router.register(r'categories', CategoryViewSet)
 router.register(r'lessons', LessonViewSet)
 router.register(r'assignments', AssignmentViewSet)
 router.register(r'exams', ExamViewSet)
@@ -27,6 +26,7 @@ urlpatterns = [
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('', include(router.urls)),
+    path('category/', CategoryAPIView.as_view(), name='categorys'),
     path('courses/', CourseListAPIView.as_view(), name='course-list'),
     path('courses/<int:pk>/', CourseDetailAPIView.as_view(), name='course-detail'),
     path('courses/create/', CourseCreateAPIView.as_view(), name='course-create'),

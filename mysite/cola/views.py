@@ -31,7 +31,7 @@ class CustomLoginView(TokenObtainPairView):
         except Exception:
             return Response({"detail": "Неверные учетные данные"}, status=status.HTTP_401_UNAUTHORIZED)
 
-        user = serializer.validated_data
+        profile = serializer.validated_data
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
@@ -47,6 +47,9 @@ class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
+    def get_queryset(self):
+        return Profile.objects.filter(id=self.request.user.id)
+
 class NetworkViewSet(viewsets.ModelViewSet):
     queryset = Network.objects.all()
     serializer_class = NetworkSerializer
@@ -59,9 +62,9 @@ class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
 
-class CategoryViewSet(viewsets.ModelViewSet):
+class CategoryAPIView(generics.ListAPIView):
     queryset = Category.objects.all()
-    serializer_class = CategorySerializer
+    serializer_class = CategoryLiatSerializer
 
 class CourseListAPIView(generics.ListAPIView):
     queryset = Course.objects.all()
